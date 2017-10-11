@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	  <meta charset="utf-8"/>
+	  <title>List Products</title>
+	</head>
+	<body>		
+		<table>
+			<tr th:each="product : ${productService}">
+				<td>
+					<a th:href="@{'/product?code=' + ${product.code}}"> 
+					 <span th:text="${product.name}" th:remove="tag"></span>
+					</a>
+				</td>
+				<td><a th:href="@{'/delete?code=' + ${product.code}}">[DELETE]</a> </td>
+			</tr>
+		</table>	
+	</body>
+</html>
