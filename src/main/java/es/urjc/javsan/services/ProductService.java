@@ -2,74 +2,48 @@ package es.urjc.javsan.services;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
 	
-	private ArrayList<Product> products;
+	private HashMap<Integer, Product> products;
 	
 	public ProductService() {
-		products = new ArrayList<>();
+		products = new HashMap<>();
 	}
 	
-	public ArrayList<Product> getProducts(){
+	public ArrayList<Product> findAll(){
+		ArrayList<Product> products = new ArrayList<>();
+		
+		for (Entry<Integer, Product> entry : this.products.entrySet()) {
+			products.add(entry.getValue());
+		}		
 		return products;
 	}
 	
 	public void add(int code, Product product) {
-		boolean added = false;
-		int pos = 0;
-		
-		while (pos < products.size() && !added) {
-			if (products.get(pos).getCode() == code) {
-				added = true;
-			} else {
-				pos++;
-			}
-		}
-		if (!added) {
-			products.add(product);			
-		}
+		this.products.put(code, product);
 	}
 	
 	public void delete(int code) {
-		boolean delete = false;
-		int pos = 0;
-		
-		while (pos < products.size() && !delete) {
-			if (products.get(pos).getCode() == code) {
-				products.remove(pos);
-				delete = true;
-			} else {
-				pos++;
-			}
-		}
+		this.products.remove(code);
 	}
 	
 	public Product getProduct(int code) {
-		Product product = null;		
-		boolean found = false;
-		int pos = 0;
-
-		while (pos < products.size() && !found) {
-			if (products.get(pos).getCode() == code) {
-				product = products.get(pos);
-				found = true;
-			} else {
-				pos++;
-			}
-		}
-		return product;
+		return this.products.get(code);
 	}
 	
 	@Override
 	public String toString() {
 		String format = "";
-		
-		for (int i = 0 ; i < products.size(); i++) {
-			format += String.format("Product : %s\n", products.get(i).toString());
-		}
+
+		for (Entry<Integer, Product> entry : this.products.entrySet()) {
+			format += String.format("Product : %s\n", entry.getValue().toString());
+		}		
 		return format;
 	}
 }

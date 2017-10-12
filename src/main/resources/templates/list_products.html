@@ -4,15 +4,16 @@
 	  <title>List Products</title>
 	</head>
 	<body>		
-		<table>
-			<tr th:each="product : ${productService}">
-				<td>
+		<div class="service" th:unless="${#lists.isEmpty(productService)}">
+			<ul th:each="product : ${productService}">
+				<li>
 					<a th:href="@{'/product?code=' + ${product.code}}"> 
-					 <span th:text="${product.name}" th:remove="tag"></span>
+						<span th:text="${product.name}" th:remove="tag"></span>
 					</a>
-				</td>
-				<td><a th:href="@{'/delete?code=' + ${product.code}}">[DELETE]</a> </td>
-			</tr>
-		</table>	
+					<a th:href="@{'/delete?code=' + ${product.code}}">[DELETE]</a> 
+				 </li>
+			</ul>
+		</div>
+		<p th:if="${#lists.isEmpty(productService)}"> There is no Products!! </p> 
 	</body>
 </html>

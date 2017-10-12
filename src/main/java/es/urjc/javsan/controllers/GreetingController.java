@@ -1,8 +1,11 @@
 package es.urjc.javsan.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,14 +20,19 @@ public class GreetingController {
 	private ProductService productService;
 
 	@PostMapping("/add")
-    public ModelAndView greetingSubmit(@ModelAttribute Product product) {
+    public ModelAndView greetingSubmit(@Valid Product product, BindingResult bindingResult) {
+		
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("form_product");
+		}
+		
 		productService.add(product.getCode(), product);
 		return new ModelAndView("greeting_template");
     }
 	
-	@RequestMapping("/add") 
-	public ModelAndView add() {
-		return new ModelAndView("form_product").addObject("product", new Product());
+	@GetMapping("/add") 
+	public ModelAndView add(Product product) {
+		return new ModelAndView("form_product");
 	}
 	
 	@RequestMapping("/")
@@ -34,7 +42,7 @@ public class GreetingController {
 	
 	@RequestMapping("/list")
 	public ModelAndView list() {
-		return new ModelAndView("list_products").addObject("productService", productService.getProducts());		
+		return new ModelAndView("list_products").addObject("productService", productService.findAll());		
 	}
 	
 	@RequestMapping("/delete")

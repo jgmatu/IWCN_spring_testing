@@ -13,16 +13,37 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
 			  
-		<script type="text/javascript" src="../static/form.js"></script>	  
+		<script type="text/javascript" th:src="@{/js/form.js}"></script>	  
+
 	  <title>Hello world!!</title>
 	</head>
 	<body>
 		<form action="#" th:action="@{/add}" th:object="${product}" method="post">
-			<p> Code: <input type="text" id="code" name="code" th:field="*{code}"/></p>
-			<p> Name: <input type="text" id="name" name="name" th:field="*{name}"/></p>
-			<p> Description <input type="text" id="desc" name="desc" th:field="*{desc}"/></p>
-			<p> Price : <input type="text" id="price" name="price" th:field="*{price}"/></p>
-			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+		 <table>
+                <tr>            
+                    <td>Code:</td>
+                    <td><input type="text" id="code" name="code" th:field="*{code}"/></td>
+                    <td th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Code Error</td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" id="name" name="name" th:field="*{name}"/></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                </tr>
+				<tr>
+					<td>Description:</td>
+					<td><input type="text" id="desc" name="desc" th:field="*{desc}"/></td>
+					<td th:if="${#fields.hasErrors('desc')}" th:errors="*{desc}">Description Error</td>
+				</tr>
+				<tr>
+					<td>Price:</td>
+					<td><input type="text" id="price" name="price" th:field="*{price}"/></td>
+					<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Description Error</td>
+				</tr>
+                <tr>
+                    <td><button type="submit">Confirm</button></td>
+                </tr>
+            </table>
 		</form>
 	</body>
 </html>

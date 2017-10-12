@@ -1,11 +1,20 @@
 package es.urjc.javsan.services;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 public class Product {
 
+    @Min(0)
 	private int code;
+
+    @Size(min=2, max=30)
 	private String name;
-	private String desc;
-	private float price;
+    
+    @Size(min=0, max=120)
+    private String desc;
+	
+    private float price;
 	
 	public Product() {
 		this.code = -1;
