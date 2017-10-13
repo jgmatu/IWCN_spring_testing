@@ -4,9 +4,9 @@
 	  <title>Hello world!!</title>
 	</head>
 	<body>
-		Code: <p th:text="${product.code}"></p>
-		Name: <p th:text="${product.name}"></p>
-		Description: <p th:text="${product.desc}"></p>
-		Price: <p th:text="${product.price}"></p>
+		<p th:text="'Code : ' + ${product.code}"></p>
+		<p th:text="'Name: ' +${product.name}"></p>
+		<p th:text="'Description: ' + ${product.desc}"></p>
+		<p th:text="'Price: ' + ${product.price}"></p>
 	</body>
 </html>
