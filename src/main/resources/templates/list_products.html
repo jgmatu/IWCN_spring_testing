@@ -10,10 +10,10 @@
 					<a th:href="@{'/product?code=' + ${product.code}}"> 
 						<span th:text="${product.name}" th:remove="tag"></span>
 					</a>
-					<a th:href="@{'/delete?code=' + ${product.code}}">[DELETE]</a> 
+					<a th:href="@{'/delete?code=' + ${product.code}}" th:text="'['+ #{delete} + ']'"></a> 
 				 </li>
 			</ul>
 		</div>
-		<p th:if="${#lists.isEmpty(productService)}"> There is no Products!! </p> 
+		<p th:if="${#lists.isEmpty(productService)}" th:text="#{empty}"></p> 
 	</body>
 </html>
