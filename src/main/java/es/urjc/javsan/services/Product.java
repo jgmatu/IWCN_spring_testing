@@ -13,7 +13,8 @@ public class Product {
     
     @Size(min=0, max=120)
     private String desc;
-	
+
+    @Min(0)
     private float price;
 	
 	public Product() {

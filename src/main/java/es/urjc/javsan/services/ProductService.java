@@ -39,12 +39,12 @@ public class ProductService {
 	
 	@Override
 	public String toString() {
-		String format = "";
+		StringBuffer format = new StringBuffer();
 
 		for (Entry<Integer, Product> entry : this.products.entrySet()) {
-			format += String.format("Product : %s\n", entry.getValue().toString());
+			format.append(String.format("Product : %s\n", entry.getValue().toString()));
 		}		
-		return format;
+		return format.toString();
 	}
 }
 
