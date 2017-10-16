@@ -1,6 +1,5 @@
 package es.urjc.javsan.services;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -33,7 +32,7 @@ public class ProductService {
 		this.products.remove(code);
 	}
 	
-	public Product getProduct(int code) {
+	public Product get(int code) {
 		return this.products.get(code);
 	}
 	

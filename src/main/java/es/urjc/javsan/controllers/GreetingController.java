@@ -16,6 +16,7 @@ import es.urjc.javsan.services.ProductService;
 
 @Controller("/")
 public class GreetingController {
+	
 	@Autowired
 	private ProductService productService;
 
@@ -53,6 +54,6 @@ public class GreetingController {
 	
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam int code) {
-		return new ModelAndView("product").addObject("product", productService.getProduct(code));		
+		return new ModelAndView("product").addObject("product", productService.get(code));		
 	}
 }
