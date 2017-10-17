@@ -1,4 +1,4 @@
-package es.urjc.javsan.controllers;
+package es.urjc.javsan.master.controllers;
 
 import javax.validation.Valid;
 

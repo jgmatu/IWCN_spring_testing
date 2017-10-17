@@ -16,7 +16,7 @@ import es.urjc.javsan.master.configuration.ProductAuthenticationProvider;
 import es.urjc.javsan.master.configuration.SecurityConfiguration;
 
 @SpringBootApplication
-@ComponentScan("es.urjc.javsan.controllers")
+@ComponentScan("es.urjc.javsan.master.controllers")
 public class Application extends WebMvcConfigurerAdapter {
 
 	@Bean
