@@ -1,10 +1,14 @@
-package es.urjc.javsan.services;
+package es.urjc.javsan.master.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Product {
 
+	@Id
     @Min(0)
 	private int code;
 
@@ -22,6 +26,13 @@ public class Product {
 		this.name = "";
 		this.desc = "";
 		this.price = -1.0f;
+	}
+	
+	public Product(int code, String name, String desc, float price) {
+		this.code = code;
+		this.name = name;
+		this.desc = desc;
+		this.price = price;
 	}
 	
 	public int getCode() {

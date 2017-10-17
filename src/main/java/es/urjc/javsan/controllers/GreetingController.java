@@ -10,24 +10,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import es.urjc.javsan.services.Product;
-import es.urjc.javsan.services.ProductService;
+import es.urjc.javsan.master.configuration.DatabaseLoader;
+import es.urjc.javsan.master.entities.Product;
 
 @Controller("/")
 public class GreetingController {
-	
+		
 	@Autowired
-	private ProductService productService;
-
+	private DatabaseLoader productDatabase;
+	
 	@PostMapping("/add")
     public ModelAndView greetingSubmit(@Valid Product product, BindingResult bindingResult) {
-		
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("form_product");
 		}
-		
-		productService.add(product.getCode(), product);
+		productDatabase.add(product.getCode(), product);
 		return new ModelAndView("greeting_template");
     }
 	
@@ -43,17 +40,17 @@ public class GreetingController {
 	
 	@RequestMapping("/list")
 	public ModelAndView list() {
-		return new ModelAndView("list_products").addObject("productService", productService.findAll());		
+		return new ModelAndView("list_products").addObject("productService", productDatabase.findAll());		
 	}
 	
 	@RequestMapping("/delete")
 	public ModelAndView delete(@RequestParam int code) {
-		productService.delete(code);
+		productDatabase.delete(code);
 		return new ModelAndView("greeting_template");
 	}
 	
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam int code) {
-		return new ModelAndView("product").addObject("product", productService.get(code));		
+		return new ModelAndView("product").addObject("product", productDatabase.get(code));		
 	}
 }

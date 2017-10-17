@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -11,16 +12,16 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-
-import es.urjc.javsan.services.ProductService;
+import es.urjc.javsan.master.configuration.DatabaseLoader;
 
 @SpringBootApplication
-@ComponentScan("es.urjc.javsan.controllers")
+@EntityScan
+@ComponentScan
 public class Application extends WebMvcConfigurerAdapter {
 
 	@Bean
-	public ProductService productService() {
-		return new ProductService();
+	public DatabaseLoader databaseLoader() {
+		return new DatabaseLoader();
 	}
 
 	@Bean
