@@ -9,5 +9,8 @@
 			<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/add" th:text="#{create}"></a></li>
 			<li><a href="/list" th:text="#{list}"></a></li>
 		</ul>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" />
+		</form>
 	</body>
 </html>

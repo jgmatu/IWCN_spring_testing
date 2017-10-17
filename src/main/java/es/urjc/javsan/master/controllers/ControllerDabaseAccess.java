@@ -15,7 +15,7 @@ import es.urjc.javsan.master.configuration.DatabaseProducts;
 import es.urjc.javsan.master.entities.Product;
 
 @Controller("/")
-public class DataBaseController {
+public class ControllerDabaseAccess {
 		
 	@Autowired
 	private DatabaseProducts productDatabase;

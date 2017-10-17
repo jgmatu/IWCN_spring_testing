@@ -20,7 +20,7 @@ import es.urjc.javsan.master.entities.User;
 
 
 @Component
-public class ProductAuthenticationProvider implements AuthenticationProvider {
+public class AuthenticationProviderProducts implements AuthenticationProvider {
 
     @Autowired
     private UserRepository userRepository;
@@ -29,13 +29,11 @@ public class ProductAuthenticationProvider implements AuthenticationProvider {
 	private void initDatabase() {	
 		System.out.println("Data base users initialized...");
 
-		GrantedAuthority[] userRoles = { new SimpleGrantedAuthority("ROLE_USER") };
+		GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
 		userRepository.save(new User("user", "user1", Arrays.asList(userRoles)));
 	
-		GrantedAuthority[] adminRoles = {new SimpleGrantedAuthority("ROLE_USER"), 
-				new SimpleGrantedAuthority("ROLE_ADMIN") };
+		GrantedAuthority[] adminRoles = {new SimpleGrantedAuthority("ROLE_USER"), new SimpleGrantedAuthority("ROLE_ADMIN")};
 		userRepository.save(new User("root", "root1", Arrays.asList(adminRoles)));
-		
 	}	
     
     @Override
