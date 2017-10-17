@@ -18,29 +18,47 @@ public class DataBaseController {
 		
 	@Autowired
 	private DatabaseLoader productDatabase;
+
+	@RequestMapping("/")
+	public ModelAndView greeting() {				
+		return new ModelAndView("greeting_template");
+	}
+
+	@GetMapping("/add") 
+	public ModelAndView edit(Product product) {
+		return new ModelAndView("form_product");
+	}
 	
 	@PostMapping("/add")
-    public ModelAndView greetingSubmit(@Valid Product product, BindingResult bindingResult) {
+    public ModelAndView addSubmit(@Valid Product product, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("form_product");
 		}
 		productDatabase.add(product);
 		return new ModelAndView("greeting_template");
     }
-	
-	@GetMapping("/add") 
-	public ModelAndView add(Product product) {
-		return new ModelAndView("form_product");
+
+	@GetMapping("/edit") 
+	public ModelAndView add(@RequestParam int code) {
+		return new ModelAndView("form_edit")
+				.addObject("product", productDatabase.get(code));
 	}
+
 	
-	@RequestMapping("/")
-	public ModelAndView greeting() {				
+	@PostMapping("/edit")
+    public ModelAndView editSubmit(@Valid Product product, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("form_edit");
+		}	
+		System.out.println(product.toString());
+		productDatabase.edit(product);
 		return new ModelAndView("greeting_template");
-	}
-	
+    }
+		
 	@RequestMapping("/list")
 	public ModelAndView list() {
-		return new ModelAndView("list_products").addObject("productService", productDatabase.findAll());		
+		return new ModelAndView("list_products")
+				.addObject("productService", productDatabase.findAll());		
 	}
 	
 	@RequestMapping("/delete")
@@ -51,6 +69,7 @@ public class DataBaseController {
 	
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam int code) {
-		return new ModelAndView("product").addObject("product", productDatabase.get(code));		
+		return new ModelAndView("product")
+				.addObject("product", productDatabase.get(code));		
 	}
 }

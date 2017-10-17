@@ -17,15 +17,7 @@ public class DatabaseLoader {
 	
 	@PostConstruct
 	private void initDatabase() {	
-		customerRepository.save(new Product(10, "Oswald","Cobblepot", 1.0f));
-		customerRepository.save(new Product(11, "Selina","Kyle", 1.1f));
-		customerRepository.save(new Product(12, "Bruce","Wayne", 1.0f));
-		
-		Iterable<Product> products = customerRepository.findAll();
-		System.out.println("Búsqueda de todos los elementos: ");
-		for (Product p : products) {
-			System.out.println(p.toString());
-		}
+		System.out.println("Data base initialized...");
 	}
 	
 	public void add(Product product) {
@@ -38,6 +30,11 @@ public class DatabaseLoader {
 
 	public Product get(int code) {
 		return customerRepository.findOne(code);
+	}
+	
+	public void edit(Product product) {
+		customerRepository.delete(product.getCode());
+		customerRepository.save(product);
 	}
 	
 	public ArrayList<Product> findAll() {
