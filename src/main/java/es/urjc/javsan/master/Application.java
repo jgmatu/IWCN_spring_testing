@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -15,8 +14,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import es.urjc.javsan.master.configuration.DatabaseLoader;
 
 @SpringBootApplication
-@EntityScan
-@ComponentScan
+@ComponentScan("es.urjc.javsan.controllers")
 public class Application extends WebMvcConfigurerAdapter {
 
 	@Bean

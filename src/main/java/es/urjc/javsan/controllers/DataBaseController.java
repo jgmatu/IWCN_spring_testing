@@ -14,7 +14,7 @@ import es.urjc.javsan.master.configuration.DatabaseLoader;
 import es.urjc.javsan.master.entities.Product;
 
 @Controller("/")
-public class GreetingController {
+public class DataBaseController {
 		
 	@Autowired
 	private DatabaseLoader productDatabase;
@@ -24,7 +24,7 @@ public class GreetingController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("form_product");
 		}
-		productDatabase.add(product.getCode(), product);
+		productDatabase.add(product);
 		return new ModelAndView("greeting_template");
     }
 	

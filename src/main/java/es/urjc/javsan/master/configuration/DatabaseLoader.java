@@ -28,19 +28,24 @@ public class DatabaseLoader {
 		}
 	}
 	
-	public void add(int code, Product product) {
-		
+	public void add(Product product) {
+		customerRepository.save(product);
 	}
 
 	public void delete(int code) {
-		
+		customerRepository.delete(code);
 	}
 
 	public Product get(int code) {
-		return null;
+		return customerRepository.findOne(code);
 	}
 	
 	public ArrayList<Product> findAll() {
-		return null;
+		ArrayList<Product> products = new ArrayList<>();
+	
+		for (Product p : customerRepository.findAll()) {
+			products.add(p);
+		}		
+		return products;
 	}	
 }
