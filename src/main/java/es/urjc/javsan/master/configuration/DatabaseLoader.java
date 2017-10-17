@@ -6,14 +6,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.urjc.javsan.master.customers.CustomerRepository;
+import es.urjc.javsan.master.customers.ProductRepository;
 import es.urjc.javsan.master.entities.Product;
 
 @Service
 public class DatabaseLoader {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private ProductRepository customerRepository;
 	
 	@PostConstruct
 	private void initDatabase() {	

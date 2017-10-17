@@ -50,7 +50,6 @@ public class DataBaseController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("form_edit");
 		}	
-		System.out.println(product.toString());
 		productDatabase.edit(product);
 		return new ModelAndView("greeting_template");
     }

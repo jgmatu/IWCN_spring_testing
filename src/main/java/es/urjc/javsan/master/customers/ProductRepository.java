@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import es.urjc.javsan.master.entities.Product;
 
 @EntityScan("es.urjc.javsan.entity")
-public interface CustomerRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends CrudRepository<Product, Integer> {
 	
 }
