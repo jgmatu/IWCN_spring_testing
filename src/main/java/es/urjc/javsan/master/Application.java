@@ -11,17 +11,29 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import es.urjc.javsan.master.configuration.DatabaseLoader;
+import es.urjc.javsan.master.configuration.DatabaseProducts;
+import es.urjc.javsan.master.configuration.ProductAuthenticationProvider;
+import es.urjc.javsan.master.configuration.SecurityConfiguration;
 
 @SpringBootApplication
 @ComponentScan("es.urjc.javsan.controllers")
 public class Application extends WebMvcConfigurerAdapter {
 
 	@Bean
-	public DatabaseLoader databaseLoader() {
-		return new DatabaseLoader();
+	public DatabaseProducts databaseProducts() {
+		return new DatabaseProducts();
 	}
-
+	
+	@Bean
+	public SecurityConfiguration secutiryConfiguration() {
+		return new SecurityConfiguration();				
+	}
+	
+	@Bean
+	public ProductAuthenticationProvider ProductAuthenticationProvider() {
+		return new ProductAuthenticationProvider();
+	}
+	
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
 		ResourceBundleMessageSource msgSrc = new ResourceBundleMessageSource();

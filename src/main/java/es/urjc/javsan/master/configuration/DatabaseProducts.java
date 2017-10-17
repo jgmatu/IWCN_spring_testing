@@ -10,14 +10,14 @@ import es.urjc.javsan.master.customers.ProductRepository;
 import es.urjc.javsan.master.entities.Product;
 
 @Service
-public class DatabaseLoader {
+public class DatabaseProducts {
 
 	@Autowired
 	private ProductRepository customerRepository;
 	
 	@PostConstruct
 	private void initDatabase() {	
-		System.out.println("Data base initialized...");
+		System.out.println("Data base products initialized...");
 	}
 	
 	public void add(Product product) {
