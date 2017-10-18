@@ -1,5 +1,6 @@
 package es.urjc.javsan.master.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -10,16 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 public class User {
 
     @Id
@@ -30,14 +25,15 @@ public class User {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<GrantedAuthority> roles;
+    private List<SimpleGrantedAuthority> roles;
 
     public User() {
     	this.user = "";
     	this.password = "";
+    	this.roles = new ArrayList<SimpleGrantedAuthority>();
     }
     
-    public User(String user, String password, List<GrantedAuthority> roles) {
+    public User(String user, String password, List<SimpleGrantedAuthority> roles) {
         this.user = user;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.roles = roles;
@@ -50,7 +46,7 @@ public class User {
     public void setUser(String user) {
     	this.user = user;
     }
-
+    
     public String getPasswordHash() {
         return password;
     }
@@ -59,8 +55,11 @@ public class User {
         this.password = passwordHash;
     }
 
-	public List<GrantedAuthority> getRoles() {
+	public List<SimpleGrantedAuthority> getRoles() {
 		return this.roles;
 	}
-
+	
+	public void setRoles(List<SimpleGrantedAuthority> roles) {
+		this.roles = roles;
+	}
 }

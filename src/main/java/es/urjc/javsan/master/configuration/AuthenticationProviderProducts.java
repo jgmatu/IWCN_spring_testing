@@ -1,9 +1,6 @@
 package es.urjc.javsan.master.configuration;
 
-import java.util.Arrays;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -24,17 +21,6 @@ public class AuthenticationProviderProducts implements AuthenticationProvider {
 
     @Autowired
     private UserRepository userRepository;
-
-    @PostConstruct
-	private void initDatabase() {	
-		System.out.println("Data base users initialized...");
-
-		GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
-		userRepository.save(new User("user", "user1", Arrays.asList(userRoles)));
-	
-		GrantedAuthority[] adminRoles = {new SimpleGrantedAuthority("ROLE_USER"), new SimpleGrantedAuthority("ROLE_ADMIN")};
-		userRepository.save(new User("root", "root1", Arrays.asList(adminRoles)));
-	}	
     
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -49,7 +35,7 @@ public class AuthenticationProviderProducts implements AuthenticationProvider {
             throw new BadCredentialsException("Wrong password");
         }
         
-        List<GrantedAuthority> roles = user.getRoles();
+        List<SimpleGrantedAuthority> roles = user.getRoles();
         return new UsernamePasswordAuthenticationToken(username, password, roles);
     }
 

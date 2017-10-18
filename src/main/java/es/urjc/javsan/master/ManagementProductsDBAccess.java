@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -12,27 +13,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import es.urjc.javsan.master.configuration.DatabaseProducts;
+import es.urjc.javsan.master.configuration.DatabaseUsers;
 import es.urjc.javsan.master.configuration.AuthenticationProviderProducts;
 import es.urjc.javsan.master.configuration.SecurityConfiguration;
 
 @SpringBootApplication
-@ComponentScan("es.urjc.javsan.master.controllers")
-public class Application extends WebMvcConfigurerAdapter {
-
-	@Bean
-	public DatabaseProducts databaseProducts() {
-		return new DatabaseProducts();
-	}
-	
-	@Bean
-	public SecurityConfiguration secutiryConfiguration() {
-		return new SecurityConfiguration();				
-	}
-	
-	@Bean
-	public AuthenticationProviderProducts authenticationProviderProducts() {
-		return new AuthenticationProviderProducts();
-	}
+public class ManagementProductsDBAccess extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
@@ -65,7 +51,7 @@ public class Application extends WebMvcConfigurerAdapter {
 	}
 	
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ManagementProductsDBAccess.class, args);
 	}
 }
 
