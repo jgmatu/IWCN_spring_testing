@@ -3,12 +3,9 @@ package es.urjc.javsan.master.configuration;
 import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
-
 import es.urjc.javsan.master.customers.UserRepository;
 import es.urjc.javsan.master.entities.User;
 

@@ -22,10 +22,7 @@ public class Product {
     private float price;
 	
 	public Product() {
-		this.code = -1;
-		this.name = "";
-		this.desc = "";
-		this.price = -1.0f;
+		;
 	}
 	
 	public Product(int code, String name, String desc, float price) {

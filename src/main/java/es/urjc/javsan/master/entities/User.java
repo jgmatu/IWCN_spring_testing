@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
@@ -25,15 +24,15 @@ public class User {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<SimpleGrantedAuthority> roles;
+    private List<GrantedAuthority> roles;
 
     public User() {
     	this.user = "";
     	this.password = "";
-    	this.roles = new ArrayList<SimpleGrantedAuthority>();
+    	this.roles = new ArrayList<GrantedAuthority>();
     }
     
-    public User(String user, String password, List<SimpleGrantedAuthority> roles) {
+    public User(String user, String password, List<GrantedAuthority> roles) {
         this.user = user;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.roles = roles;
@@ -55,11 +54,11 @@ public class User {
         this.password = passwordHash;
     }
 
-	public List<SimpleGrantedAuthority> getRoles() {
+	public List<GrantedAuthority> getRoles() {
 		return this.roles;
 	}
 	
-	public void setRoles(List<SimpleGrantedAuthority> roles) {
+	public void setRoles(List<GrantedAuthority> roles) {
 		this.roles = roles;
 	}
 }

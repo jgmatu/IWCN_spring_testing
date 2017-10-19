@@ -6,16 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import es.urjc.javsan.master.configuration.DatabaseProducts;
-import es.urjc.javsan.master.configuration.DatabaseUsers;
-import es.urjc.javsan.master.configuration.AuthenticationProviderProducts;
-import es.urjc.javsan.master.configuration.SecurityConfiguration;
 
 @SpringBootApplication
 public class ManagementProductsDBAccess extends WebMvcConfigurerAdapter {
