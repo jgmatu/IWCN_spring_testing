@@ -27,13 +27,12 @@ public class DataBaseController {
 		if (bindingResult.hasErrors()) {
 			return "Error bad product!";
 		}
-		System.out.println(product.toString());
 		productDB.add(product);
 		return "Added!!";
     }
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String editSubmit(@Valid Product product, BindingResult bindingResult) {
+	public String editSubmit(@Valid @RequestBody Product product, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "Error bad edit!!";
 		}	
@@ -55,6 +54,6 @@ public class DataBaseController {
 	
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ResponseEntity<Product> product(@RequestParam int code) {
-		return new ResponseEntity<Product>(productDB.get(code), HttpStatus.CREATED);		
+		return new ResponseEntity<Product>(productDB.get(code), HttpStatus.CREATED);
 	}
 }

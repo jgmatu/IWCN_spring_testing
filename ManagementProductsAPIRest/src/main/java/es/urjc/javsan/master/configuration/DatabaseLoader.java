@@ -13,7 +13,7 @@ import es.urjc.javsan.master.entities.Product;
 public class DatabaseLoader {
 
 	@Autowired
-	private ProductRepository customerRepository;
+	private ProductRepository customRepo;
 	
 	@PostConstruct
 	private void initDatabase() {	
@@ -21,25 +21,25 @@ public class DatabaseLoader {
 	}
 	
 	public void add(Product product) {
-		customerRepository.save(product);
+		customRepo.save(product);
 	}
 
 	public void delete(int code) {
-		customerRepository.delete(code);
+		customRepo.delete(code);
 	}
 
 	public Product get(int code) {
-		return customerRepository.findOne(code);
+		return customRepo.findOne(code);
 	}
 	
 	public void edit(Product product) {
-		customerRepository.save(product);
+		customRepo.save(product);
 	}
 	
 	public ArrayList<Product> findAll() {
 		ArrayList<Product> products = new ArrayList<>();
 	
-		for (Product p : customerRepository.findAll()) {
+		for (Product p : customRepo.findAll()) {
 			products.add(p);
 		}		
 		return products;
