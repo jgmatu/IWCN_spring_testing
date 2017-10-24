@@ -2,7 +2,6 @@ package es.urjc.javsan.master.controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -39,7 +38,7 @@ public class RestClientController {
 		String url = REST + "/add";
 		String response = restTemplate.postForObject(url, product, String.class);
 	
-		return new ModelAndView("greeting_template");
+		return new ModelAndView("greeting_template").addObject("response", response);
     }
 
 	@GetMapping("/edit") 
@@ -56,17 +55,19 @@ public class RestClientController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("form_edit");
 		}	
-		RestTemplate restTemplate = new RestTemplate();
 		String url = REST + "/edit";
+		
+		RestTemplate restTemplate = new RestTemplate();
 		String response = restTemplate.postForObject(url, product, String.class);
 	
-		return new ModelAndView("greeting_template");
+		return new ModelAndView("greeting_template").addObject("response", response);
     }
 		
 	@RequestMapping("/list")
 	public ModelAndView list() {
-		RestTemplate restTemplate = new RestTemplate();
 		String url = REST + "/list";
+		
+		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Product[]> responseEntity = restTemplate.getForEntity(url, Product[].class);
 		Product[] products = responseEntity.getBody();
 		
@@ -75,10 +76,11 @@ public class RestClientController {
 	
 	@RequestMapping("/delete")
 	public ModelAndView delete(@RequestParam int code) {
+		String url = REST + "/delete?code=" + String.valueOf(code);
 		RestTemplate restTemplate = new RestTemplate();
-		
-		restTemplate.delete(REST + "/delete?code=" + String.valueOf(code));
-		return new ModelAndView("greeting_template");
+		String response = restTemplate.getForObject(url, String.class);
+
+		return new ModelAndView("greeting_template").addObject("response", response);
 	}
 	
 	@RequestMapping("/product")

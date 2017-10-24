@@ -42,11 +42,10 @@ public class DataBaseController {
 		
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> list() {
-		return new ResponseEntity<List<Product>>(productDB.findAll(), HttpStatus.CREATED);
+		return new ResponseEntity<List<Product>>(productDB.findAll(), HttpStatus.ACCEPTED);
 	}
-	
 
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam int code) {
 		productDB.delete(code);
 		return "Protuct Deleted!!";
@@ -54,6 +53,6 @@ public class DataBaseController {
 	
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ResponseEntity<Product> product(@RequestParam int code) {
-		return new ResponseEntity<Product>(productDB.get(code), HttpStatus.CREATED);
+		return new ResponseEntity<Product>(productDB.get(code), HttpStatus.ACCEPTED);
 	}
 }
