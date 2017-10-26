@@ -18,11 +18,11 @@
 	</head>
 	<body>
 	
-        <h3 th:text="${product.getCode()}"/>
+        <h3 th:text="'Code: ' + ${product.getCode()}"/>
 		<form action="#" th:action="@{/edit}" th:object="${product}" method="post">
 			<table>	
                 <tr>            
-                    <td><input type="hidden" id="code" name="code" th:field="*{code}" value=""/></td>
+                    <td><input type="hidden" id="code" name="code" th:field="*{code}"/></td>
                     <td th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Code Error</td>
                 </tr>
                 <tr>
@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 					<td>Price:</td>
-					<td><input type="text" id="price" name="price" th:field="*{price}" value=""/></td>
+					<td><input type="text" id="price" name="price" th:field="*{price}"/></td>
 					<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Description Error</td>
 				</tr>
                 <tr>

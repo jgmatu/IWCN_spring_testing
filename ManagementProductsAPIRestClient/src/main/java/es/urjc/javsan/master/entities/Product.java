@@ -25,18 +25,18 @@ public class Product {
 
     @Min(0)
     private float price;
-
+	
 	protected Product() {
 		;
 	}
-
+	
 	public Product(int code, String name, String desc, float price) {
 		this.code = code;
 		this.name = name;
 		this.desc = desc;
 		this.price = price;
 	}
-		
+	
 	@Override 
 	public String toString() {
 		return String.format("Code : %d Name : %s, Desc : %s, Price : %f", code, name, desc, price);
