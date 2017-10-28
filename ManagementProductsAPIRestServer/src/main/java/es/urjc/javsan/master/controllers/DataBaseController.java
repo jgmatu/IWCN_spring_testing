@@ -28,7 +28,7 @@ public class DataBaseController {
 			return "Error bad product!";
 		}
 		productDB.add(product);
-		return "Added!!";
+		return "Product Added!!";
     }
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)

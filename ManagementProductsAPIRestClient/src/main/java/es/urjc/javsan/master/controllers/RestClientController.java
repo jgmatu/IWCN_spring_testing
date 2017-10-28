@@ -64,8 +64,7 @@ public class RestClientController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("form_edit");
 		}	
-		System.out.println(product.toString());
-		String response = productSrv.insert(product);
+		String response = productSrv.edit(product);
 		return new ModelAndView("home").addObject("response", response);
     }
 		
