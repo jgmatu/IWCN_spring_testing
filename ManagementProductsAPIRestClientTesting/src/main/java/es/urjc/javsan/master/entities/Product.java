@@ -37,6 +37,19 @@ public class Product {
 		this.price = price;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Product)) {
+			return false;
+		}
+		Product p = (Product) obj;
+		return p.code == this.code && p.name == this.name && 
+				p.desc == this.desc && p.price == this.price;
+	}
+	
 	@Override 
 	public String toString() {
 		return String.format("Code : %d Name : %s, Desc : %s, Price : %f", code, name, desc, price);
