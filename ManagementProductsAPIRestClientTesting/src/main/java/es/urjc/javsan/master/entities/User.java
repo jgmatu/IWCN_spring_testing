@@ -50,11 +50,6 @@ public class User {
 			return false;
 		}
 		User u = (User) obj;
-		return u.name == this.name;
-	}
-	
-	public List<GrantedAuthority> getRoles() {
-		return this.roles;
-	}
-    
+		return u.name == this.name && u.roles.equals(this.roles);
+	}    
 }

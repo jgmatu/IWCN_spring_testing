@@ -1,5 +1,6 @@
 package es.urjc.javsan.master;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -36,6 +37,7 @@ public class UserTest {
 	public void equalsTest() {
 		assertEquals(userOne, userTwo);
 		assertNotEquals(userOne, adminOne);
-		assertNotEquals(userTwo, adminOne);
+		assertNotEquals(userTwo, adminOne);		
+		assertArrayEquals(userOne.getRoles().toArray(), userTwo.getRoles().toArray());
 	}
 }

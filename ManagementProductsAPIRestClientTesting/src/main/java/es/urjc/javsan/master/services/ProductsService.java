@@ -10,7 +10,7 @@ import es.urjc.javsan.master.entities.Product;
 public class ProductsService {
 
 	private static final String REST = "http://localhost:8080";
-
+	
 	public Product get(int code) {
 		String url = REST + "/product?code="+ String.valueOf(code);
 		

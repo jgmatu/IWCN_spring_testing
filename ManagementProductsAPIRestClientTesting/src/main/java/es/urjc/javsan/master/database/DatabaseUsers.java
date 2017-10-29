@@ -1,5 +1,6 @@
 package es.urjc.javsan.master.database;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
@@ -25,4 +26,14 @@ public class DatabaseUsers {
 		SimpleGrantedAuthority[] adminRoles = {new SimpleGrantedAuthority("ROLE_USER"), new SimpleGrantedAuthority("ROLE_ADMIN")};
 		userRepository.save(new User("root", "root1", Arrays.asList(adminRoles)));
 	}	
+    
+    
+    public ArrayList<User> findAll() {
+    	ArrayList<User> users = new ArrayList<>();
+    	
+    	for (User u : userRepository.findAll()) {
+    		users.add(u);
+    	}
+    	return users;
+    }
 }

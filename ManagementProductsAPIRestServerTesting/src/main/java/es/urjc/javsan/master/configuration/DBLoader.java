@@ -10,7 +10,7 @@ import es.urjc.javsan.master.customers.ProductRepository;
 import es.urjc.javsan.master.entities.Product;
 
 @Service
-public class DatabaseLoader {
+public class DBLoader {
 
 	@Autowired
 	private ProductRepository customRepo;
