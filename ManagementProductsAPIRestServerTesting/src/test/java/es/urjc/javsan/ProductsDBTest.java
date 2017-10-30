@@ -2,7 +2,8 @@ package es.urjc.javsan;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -32,31 +33,56 @@ public class ProductsDBTest {
 	private static int NUM_PRODUCTS = 5;
 	private static int PRICE = 10;
 	
-	
 	@Before
 	public void initBefore() {
 		productsDB = new DBLoader();
 		
 		MockitoAnnotations.initMocks(this);
 	}
-	
 	@Test
-	public void ProductDBTest() {
+	public void productDBfindAllTest() {
 		ArrayList<Product> products = getProductsTest();
 		
-	    when(productRepo.findAll()).then(answer ->{
+		when(productRepo.findAll()).then(answer ->{
         	return products;
         });
-	    
-	    when(productRepo.findOne(1)).then(answer ->{
-        	return products.get(1);
-        });
-
-	    assertEquals(productsDB.findAll().size(), NUM_PRODUCTS);
-	    assertNull(productsDB.get(-1));
-	    
-	    assertNotNull(productsDB.get(1));	   
+	    assertEquals(productsDB.findAll().size(), NUM_PRODUCTS);	    
 	}
+
+	@Test
+	public void productDBfindOne() {
+		Product product = new Product(10, "test", "testGet", 120.0f);
+		
+	    when(productRepo.findOne(10)).then(answer ->{
+        	return product;
+        });
+	    assertNotNull(productsDB.get(10));	
+	    assertEquals(product, productsDB.get(10));
+	}
+	
+	@Test
+	public void productDBDeleteTest() {
+	
+		productsDB.delete(1);
+	    verify(productRepo, times(1)).delete(1);
+	}
+	
+	@Test
+	public void productDBSaveTest() {
+		Product product = new Product(11, "test", "testSave", 120.0f);
+	
+		productsDB.add(product);
+		verify(productRepo, times(1)).save(product);
+	}
+	
+	@Test
+	public void productDBEditTest() {
+		Product product = new Product(11, "test", "testSave", 120.0f);
+		
+		productsDB.edit(product);
+		verify(productRepo, times(1)).save(product);		
+	}
+	
 	
 	private ArrayList<Product> getProductsTest() {
 		ArrayList<Product> products = new ArrayList<>();

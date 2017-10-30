@@ -22,13 +22,15 @@ import es.urjc.javsan.master.entities.User;
 
 @RunWith(SpringRunner.class)
 public class UsersDBTest {
-		
+
+	private static final int NUM_USERS = 2;
+	
 	@Mock
 	private UserRepository userRepository;
 	
 	@InjectMocks
 	private DatabaseUsers usersDB;
-	
+		
 	@Before
 	public void init() {
 		usersDB = new DatabaseUsers();
@@ -49,6 +51,6 @@ public class UsersDBTest {
 		when(userRepository.findAll()).then(answer ->{
         	return users;
         });
-		assertEquals(usersDB.findAll().size(), 2);
+		assertEquals(usersDB.findAll().size(), NUM_USERS);
 	}
 }
