@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import es.urjc.javsan.master.customers.ProductRepository;
 import es.urjc.javsan.master.entities.Product;
 
 @Service
 public class DBLoader {
 
 	@Autowired
-	private ProductRepository customRepo;
+	private CrudRepository<Product, Integer> customRepo;
 	
 	@PostConstruct
 	private void initDatabase() {	

@@ -27,7 +27,6 @@ public class ProductsController {
 		if (bindingResult.hasErrors()) {
 			return "Error bad product!";
 		}
-		System.out.println(product.toString());
 		productDB.add(product);
 		return "Added!!";
     }
