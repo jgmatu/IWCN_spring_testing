@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import es.urjc.javsan.master.entities.Product;
 
 @Service
-public class DBLoader {
+public class ProductsDB {
 
 	@Autowired
 	private CrudRepository<Product, Integer> customRepo;

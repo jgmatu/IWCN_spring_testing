@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import es.urjc.javsan.master.configuration.DBLoader;
+import es.urjc.javsan.master.configuration.ProductsDB;
 import es.urjc.javsan.master.entities.Product;
 
 @RestController
 public class ProductsController {
 		
 	@Autowired
-	private DBLoader productDB;
+	private ProductsDB productDB;
 		
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addSubmit(@Valid @RequestBody Product product, BindingResult bindingResult) {

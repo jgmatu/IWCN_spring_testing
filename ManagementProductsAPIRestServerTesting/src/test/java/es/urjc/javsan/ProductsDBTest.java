@@ -17,7 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import es.urjc.javsan.master.configuration.DBLoader;
+import es.urjc.javsan.master.configuration.ProductsDB;
 import es.urjc.javsan.master.entities.Product;
 
 @RunWith(SpringRunner.class)
@@ -28,25 +28,16 @@ public class ProductsDBTest {
 	private CrudRepository<Product, Integer> productRepo;
 	
 	@InjectMocks
-	private DBLoader productsDB;
+	private ProductsDB productsDB;
 	
 	private static int NUM_PRODUCTS = 5;
 	private static int PRICE = 10;
 	
 	@Before
 	public void initBefore() {
-		productsDB = new DBLoader();
+		productsDB = new ProductsDB();
 		
 		MockitoAnnotations.initMocks(this);
-	}
-	@Test
-	public void productDBfindAllTest() {
-		ArrayList<Product> products = getProductsTest();
-		
-		when(productRepo.findAll()).then(answer ->{
-        	return products;
-        });
-	    assertEquals(productsDB.findAll().size(), NUM_PRODUCTS);	    
 	}
 
 	@Test
@@ -83,6 +74,15 @@ public class ProductsDBTest {
 		verify(productRepo, times(1)).save(product);		
 	}
 	
+	@Test
+	public void productDBfindAllTest() {
+		ArrayList<Product> products = getProductsTest();
+		
+		when(productRepo.findAll()).then(answer ->{
+        	return products;
+        });
+	    assertEquals(productsDB.findAll().size(), NUM_PRODUCTS);	    
+	}
 	
 	private ArrayList<Product> getProductsTest() {
 		ArrayList<Product> products = new ArrayList<>();

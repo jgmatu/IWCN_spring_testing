@@ -15,8 +15,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import es.urjc.javsan.master.customers.UserRepository;
-import es.urjc.javsan.master.database.DatabaseUsers;
+import es.urjc.javsan.master.customers.UsersDB;
+import es.urjc.javsan.master.customers.UsersRepo;
 import es.urjc.javsan.master.entities.User;
 
 
@@ -26,14 +26,14 @@ public class UsersDBTest {
 	private static final int NUM_USERS = 2;
 	
 	@Mock
-	private UserRepository userRepository;
+	private UsersRepo userRepository;
 	
 	@InjectMocks
-	private DatabaseUsers usersDB;
+	private UsersDB usersDB;
 		
 	@Before
 	public void init() {
-		usersDB = new DatabaseUsers();
+		usersDB = new UsersDB();
 		MockitoAnnotations.initMocks(this);
 	}
 	
