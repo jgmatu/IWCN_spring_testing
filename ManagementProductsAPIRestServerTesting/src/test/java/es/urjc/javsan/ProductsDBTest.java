@@ -53,9 +53,8 @@ public class ProductsDBTest {
 	
 	@Test
 	public void productDBDeleteTest() {
-	
 		productsDB.delete(1);
-	    verify(productRepo, times(1)).delete(1);
+		verify(productRepo, times(1)).delete(1);
 	}
 	
 	@Test
@@ -92,5 +91,4 @@ public class ProductsDBTest {
 		}		
 		return products;
 	}
-	
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import es.urjc.javsan.master.entities.Product;
@@ -13,7 +12,7 @@ import es.urjc.javsan.master.entities.Product;
 public class ProductsDB {
 
 	@Autowired
-	private CrudRepository<Product, Integer> customRepo;
+	private ProductsRepository customRepo;
 	
 	@PostConstruct
 	private void initDatabase() {	
