@@ -8,9 +8,9 @@
 	<p th:if="${param.logout}">Logged out</p>
 
 	<form th:action="@{/login}" method="post">
-		<label>User Name:</label><input type="text" name="username" /><br />
-		<label>Password:</label><input type="password" name="password" /><br />
-		<input type="submit" value="Sign In" /><br />
+		<label>User Name:</label><input id="user" type="text" name="username" /><br />
+		<label>Password:</label><input id="password" type="password" name="password" /><br />
+		<input id="signIn" type="submit" value="Sign In" /><br />
 	</form>
 </body>
 </html>
