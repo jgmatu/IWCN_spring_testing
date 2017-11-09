@@ -5,11 +5,11 @@ spring:
     jpa:
         database: MYSQL
         hibernate:
-            ddl-auto: create
+            ddl-auto: validate
 
     datasource:
         url: jdbc:mysql://localhost/example
-        username: root
+        username: web
         password: 123456
         driver-class-name: com.mysql.jdbc.Driver
 
