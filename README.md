@@ -141,11 +141,24 @@ spring:
         password: 123456
         driver-class-name: com.mysql.jdbc.Driver
 
-
 Si el esquema DDL de la tabla está es válido y la base de datos se llama example. La conexión
 y la entidad de tabla product será correcta y arrancará de forma satisfactoria el servidor web.
 
 Ahora podremos añadir, listar, actualizar o borrar productos. La interfaz CrudRepository hará las
 sentencias SQL por nosotros.
 
-Si hacemos una select a la base de datos mysql del docker después de haber añadido un par de productos.
+Si hacemos una select a la base de datos mysql del docker después de haber añadido un par de productos desde
+el servidor web veremos algo de este estilo en la tabla de la base de datos.
+
+mysql> select * from product;
+Empty set (0.00 sec)
+
+mysql> select * from product;
++------+------------+-------------+-------+
+| code | name       | description | price |
++------+------------+-------------+-------+
+|    1 | Cocacola   | Refresco    |     1 |
+|    2 | Aquarious  | Refresco    |     1 |
+|    3 | Cacahuetes | Aperitivo   |   1.3 |
++------+------------+-------------+-------+
+3 rows in set (0.00 sec)
