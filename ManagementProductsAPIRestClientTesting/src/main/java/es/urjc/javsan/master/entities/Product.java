@@ -21,7 +21,7 @@ public class Product {
 	private String name;
     
     @Size(min=0, max=120)
-    private String desc;
+    private String description;
 
     @Min(0)
     private float price;
@@ -33,7 +33,7 @@ public class Product {
 	public Product(int code, String name, String desc, float price) {
 		this.code = code;
 		this.name = name;
-		this.desc = desc;
+		this.description = desc;
 		this.price = price;
 	}
 	
@@ -47,11 +47,11 @@ public class Product {
 		}
 		Product p = (Product) obj;
 		return p.code == this.code && p.name == this.name && 
-				p.desc == this.desc && p.price == this.price;
+				p.description == this.description && p.price == this.price;
 	}
 	
 	@Override 
 	public String toString() {
-		return String.format("Code : %d Name : %s, Desc : %s, Price : %f", code, name, desc, price);
+		return String.format("Code : %d Name : %s, Desc : %s, Price : %f", code, name, description, price);
 	}
 }

@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class WebDriverTest {
 
 	private static final String INVALID = "Invalid credentials";
+	private static final String EMPTY = "There is no products";
 	
 	private WebDriver driver;
 
@@ -25,14 +26,30 @@ public class WebDriverTest {
 	}
 
 	@Test
-	public void indexPageTest() {
+	public void pagesTest() {
+		checkRoot();
+		checkLogin();
+		checkListProducts();
+	}
+	
+	private void checkListProducts() {
+		driver.findElement(By.id("list")).click();
+		WebElement element = driver.findElement(By.tagName("p"));
+		assertEquals(element.getText(), EMPTY);
+	}
+	
+	private void checkRoot() {
 		WebElement working = driver.findElement(By.tagName("a"));
+
 		assertEquals(working.getText(),"here");
-		working.click();
-		
+		working.click();		
+	}
+	
+	private void checkLogin() {
 		signIn("user", "password");
 		checkBadLogin();
 		signIn("user", "user1");
+		checkSuccessLogin("user");		
 	}
 	
 	private void signIn(String user, String password) {
@@ -45,5 +62,9 @@ public class WebDriverTest {
 		WebElement invalid = driver.findElement(By.tagName("p"));
 		assertEquals(invalid.getText(), INVALID);		
 	}
-	
+
+	private void checkSuccessLogin(String user) {
+		WebElement valid = driver.findElement(By.id("logged"));
+		assertEquals(valid.getText(), "Hello " + user);
+	}
 }
