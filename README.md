@@ -160,3 +160,12 @@ el servidor web veremos algo de este estilo en la tabla de la base de datos.
     |  2 | root | $2a$10$MxVCaVn1gPbOqhwNnDhjkOQFvd0DKLePsG9C.gKf6sPhRswaTuMke |
     +----+------+--------------------------------------------------------------+
     2 rows in set (0.00 sec)
+
+En el pom.xml hay que acrodarse de agregar la dependecia de mysql para el jpa.
+
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>6.0.6</version>
+    </dependency>
