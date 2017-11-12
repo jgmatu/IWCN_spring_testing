@@ -110,20 +110,6 @@ mysql>
 
 De esta manera podemos depurar la base de datos desde el contenedor docker.
 
-Creamos la base de datos y la tabla productos dentro de la consola.
-
-CREATE DATABASE example;
-
-USE example;
-
-CREATE TABLE product (
-    code INT(11) NOT NULL,
-    name VARCHAR(30) NOT NULL,
-    description VARCHAR(120),
-    price FLOAT NOT NULL,
-    PRIMARY KEY (code)
-);
-
 # Spring Boot MYSQL
 
 Ahora vamos al servidor WEB cambiamos la configuración del servidor para que conecte con
@@ -133,7 +119,9 @@ spring:
     jpa:
         database: MYSQL
         hibernate:
-            ddl-auto: validate
+            ddl-auto: validate # Hacemos la primera vez create. De esta forma nos creara el esquema relacional de la base de datos  
+                               # una vez creada se cambiará a validate para que si paramos el servidor no se machaque el estado de la
+                               # base de datos cuando se creo por primera vez.
 
     datasource:
         url: jdbc:mysql://localhost/example
@@ -143,6 +131,7 @@ spring:
 
 Si el esquema DDL de la tabla está es válido y la base de datos se llama example. La conexión
 y la entidad de tabla product será correcta y arrancará de forma satisfactoria el servidor web.
+Lo mismo para la entidad user del servior MVC.
 
 Ahora podremos añadir, listar, actualizar o borrar productos. La interfaz CrudRepository hará las
 sentencias SQL por nosotros.
@@ -162,3 +151,12 @@ mysql> select * from product;
 |    3 | Cacahuetes | Aperitivo   |   1.3 |
 +------+------------+-------------+-------+
 3 rows in set (0.00 sec)
+
+mysql> select * from user;
++----+------+--------------------------------------------------------------+
+| id | name | password                                                     |
++----+------+--------------------------------------------------------------+
+|  1 | user | $2a$10$BeqvZhHkn6tDmaxtqH14c.741kcmNE4CHHNE1mYVn6KO7VFxYkoV6 |
+|  2 | root | $2a$10$MxVCaVn1gPbOqhwNnDhjkOQFvd0DKLePsG9C.gKf6sPhRswaTuMke |
++----+------+--------------------------------------------------------------+
+2 rows in set (0.00 sec)

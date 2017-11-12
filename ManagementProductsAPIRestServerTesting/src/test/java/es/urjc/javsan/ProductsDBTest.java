@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 import es.urjc.javsan.master.configuration.ProductsDB;
 import es.urjc.javsan.master.entities.Product;
@@ -29,7 +30,7 @@ public class ProductsDBTest {
 	
 	@InjectMocks
 	private ProductsDB productsDB;
-	
+		
 	private static int NUM_PRODUCTS = 5;
 	private static int PRICE = 10;
 	
