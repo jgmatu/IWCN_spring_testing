@@ -31,4 +31,19 @@ public class ProductTest {
 		assertNotEquals(productOne, productThree);
 		assertNotEquals(productTwo, productThree);
 	}
+	
+	@Test
+	public void limitsTest() {
+		productOne.setCode(-1);
+		assertEquals(productOne.getCode(), -1);
+
+		productOne.setDescription("test");
+		assertEquals(productOne.getDescription(), "test");
+		
+		productOne.setName("test");
+		assertEquals(productOne.getName(), "test");
+		
+		productOne.setPrice(-1.0f);
+		assertEquals(productOne.getPrice(), -1.0f, 0.1);
+	}
 }

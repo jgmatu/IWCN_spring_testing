@@ -16,7 +16,7 @@ public class ProductsDB {
 	
 	@PostConstruct
 	private void initDatabase() {	
-		System.out.println("Data base initialized...");
+		;
 	}
 	
 	public void add(Product product) {

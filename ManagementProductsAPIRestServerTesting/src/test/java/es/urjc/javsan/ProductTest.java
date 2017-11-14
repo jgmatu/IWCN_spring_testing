@@ -3,6 +3,7 @@ package es.urjc.javsan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import org.apache.tomcat.jni.User;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,6 +18,8 @@ public class ProductTest {
 	private Product productTwo;
 	private Product productThree;
 	
+	private User obj;
+	
 	@Before 
 	public void initialize() {
 		productOne = new Product(10, "test", "test", 11.0f);
@@ -29,5 +32,6 @@ public class ProductTest {
 		assertEquals(productOne, productTwo);
 		assertNotEquals(productOne, productThree);
 		assertNotEquals(productTwo, productThree);
+		assertNotEquals(productOne, obj);
 	}
 }

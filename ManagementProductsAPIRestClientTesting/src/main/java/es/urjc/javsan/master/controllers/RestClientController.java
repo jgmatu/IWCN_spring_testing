@@ -22,6 +22,10 @@ public class RestClientController {
 			
 	@Autowired
 	private ProductsService productSrv;
+
+	private final String RESPONSE = "response";
+	private final String PRODUCT = "product";
+	private final String PRODUCTSERVICE = "productService";
 	
 	@RequestMapping("/")
 	public ModelAndView root() {	
@@ -35,6 +39,11 @@ public class RestClientController {
 		return model;
 	}
 	
+	@RequestMapping("/login")
+	public ModelAndView login() {				
+		return new ModelAndView("login");
+	}
+
 	private boolean isAuthenticathed() {
 		return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
 				.filter(r-> !r.getAuthority().equals("ROLE_ANONYMOUS")).collect(Collectors.toList()).size() > 0;
@@ -45,11 +54,6 @@ public class RestClientController {
 	public ModelAndView home() {				
 		return new ModelAndView("home");
 	}
-
-	@RequestMapping("/login")
-	public ModelAndView login() {				
-		return new ModelAndView("login");
-	}
 	
 	@RequestMapping("/denied")
 	public ModelAndView denied() {				
@@ -59,7 +63,7 @@ public class RestClientController {
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/add") 
 	public ModelAndView add(Product product) {
-		return new ModelAndView("form_product").addObject("response", product);
+		return new ModelAndView("form_product").addObject(RESPONSE, product);
 	}
 
 	@Secured({"ROLE_ADMIN"})
@@ -69,13 +73,13 @@ public class RestClientController {
 			return new ModelAndView("form_product");
 		}	
 		String response = productSrv.insert(product);
-		return new ModelAndView("home").addObject("response", response);
+		return new ModelAndView("home").addObject(RESPONSE, response);
     }
 
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/edit") 
 	public ModelAndView edit(@RequestParam int code) {
-		return new ModelAndView("form_edit").addObject("product", productSrv.get(code));
+		return new ModelAndView("form_edit").addObject(PRODUCT, productSrv.get(code));
 	}
 	
 	@Secured({"ROLE_ADMIN"})
@@ -85,25 +89,25 @@ public class RestClientController {
 			return new ModelAndView("form_edit");
 		}	
 		String response = productSrv.edit(product);
-		return new ModelAndView("home").addObject("response", response);
+		return new ModelAndView("home").addObject(RESPONSE, response);
     }
 		
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("/list")
 	public ModelAndView list() {		
-		return new ModelAndView("list_products").addObject("productService", productSrv.findAll());		
+		return new ModelAndView("list_products").addObject(PRODUCTSERVICE, productSrv.findAll());		
 	}
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("/delete")
 	public ModelAndView delete(@RequestParam int code) {
 		String response = productSrv.delete(code);
-		return new ModelAndView("home").addObject("response", response);
+		return new ModelAndView("home").addObject(RESPONSE, response);
 	}
 	
 	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam int code) {		
-		return new ModelAndView("product").addObject("product", productSrv.get(code));		
+		return new ModelAndView("product").addObject(PRODUCT, productSrv.get(code));		
 	}
 }

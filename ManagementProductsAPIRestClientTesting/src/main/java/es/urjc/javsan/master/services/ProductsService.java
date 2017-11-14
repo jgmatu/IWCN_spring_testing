@@ -30,7 +30,7 @@ public class ProductsService {
 	}
 	
 	public String edit(Product p) {
-		String url = REST + "/edit";
+		String url = REST + "/edit?code="+p.getCode();
 		ResponseEntity<String> response = restTemplate.postForEntity(url, p, String.class);
 
 		return response.getBody();

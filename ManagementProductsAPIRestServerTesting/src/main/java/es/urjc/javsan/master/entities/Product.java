@@ -24,13 +24,13 @@ public class Product {
     private String description;
 
     @Min(0)
-    private float price;
+    private double price;
 	
-	protected Product() {
+	public Product() {
 		;
 	}
 	
-	public Product(int code, String name, String desc, float price) {
+	public Product(int code, String name, String desc, double price) {
 		this.code = code;
 		this.name = name;
 		this.description = desc;

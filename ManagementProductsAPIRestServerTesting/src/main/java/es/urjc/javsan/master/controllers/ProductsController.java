@@ -2,8 +2,6 @@ package es.urjc.javsan.master.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,19 +21,13 @@ public class ProductsController {
 	private ProductsDB productDB;
 		
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity<String> addSubmit(@Valid @RequestBody Product product, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<String>("Error bad product!!", HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<String> addSubmit(@RequestBody Product product, BindingResult bindingResult) {
 		productDB.add(product);
 		return new ResponseEntity<String>("Product Added!", HttpStatus.CREATED);
     }
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ResponseEntity<String> editSubmit(@Valid @RequestBody Product product, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			new ResponseEntity<String>("Error editing product!!", HttpStatus.BAD_REQUEST);
-		}	
+	public ResponseEntity<String> editSubmit(@RequestBody Product product, BindingResult bindingResult) {
 		productDB.edit(product);
 		return new ResponseEntity<String>("Product Edited!", HttpStatus.CREATED);
     }
