@@ -10,7 +10,7 @@ Una vez descargado lo añadimos como librería externa de nuestro projecto..
 En el IDE -> Click derecho en el proyecto -> Properties -> Java Build Path -> Pestaña Libraries -> Add external Jar ->
 añadirmos el jar que hemos descargado.
 
-Una vez añadida la librería externa, yo uso firefox, hay que añadir (geckodriver) https://github.com/mozilla/geckodriver/releases]
+Una vez añadida la librería externa, yo uso firefox, hay que añadir [geckodriver] (https://github.com/mozilla/geckodriver/releases)
 
 ¡¡¡CUIDADO CON LA ARQUITECTURA DE DESCARGA!!!
 
@@ -24,7 +24,7 @@ En linux:
     $ mv gecokdriver ~/bin
     $ PATH=$PATH:~/bin
 
-En (Windows)[https://medium.com/@01luisrene/como-agregar-variables-de-entorno-s-o-windows-10-e7f38851f11f]
+En [Windows](https://medium.com/@01luisrene/como-agregar-variables-de-entorno-s-o-windows-10-e7f38851f11f)
 
 Por último se lanza el MVC con las vistas y se lanza el test, debería abriros un navegador y empezar a navegar
 automáticamente con lo que hayais puesto en el test.
