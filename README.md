@@ -10,7 +10,7 @@ Una vez descargado lo añadimos como librería externa de nuestro projecto..
 En el IDE -> Click derecho en el proyecto -> Properties -> Java Build Path -> Pestaña Libraries -> Add external Jar ->
 añadirmos el jar que hemos descargado.
 
-Una vez añadida la librería externa, yo uso firefox, hay que añadir [geckodriver] (https://github.com/mozilla/geckodriver/releases)
+Una vez añadida la librería externa, yo uso firefox, hay que añadir [geckodriver](https://github.com/mozilla/geckodriver/releases)
 
 ¡¡¡CUIDADO CON LA ARQUITECTURA DE DESCARGA!!!
 
