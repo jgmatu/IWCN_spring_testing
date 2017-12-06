@@ -2,7 +2,7 @@
 
 Para que webdriver funcione hay que hacer varias cosas.
 
-En maven descargamos el jar de (selenium-server-standalone)[https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server-standalone/2.53.0]
+En maven descargamos el jar de [selenium-server-standalone](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server-standalone/2.53.0)
 
 
 Una vez descargado lo añadimos como librería externa de nuestro projecto..
